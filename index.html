@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rick and Morty API</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Boogaloo&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    </head>
+    <body>
+        <div class ="wrapper">
+            <div class="navbar">
+                    <span><a href="#widgets">Search</a></span>
+                    <span><a href= "https://www.adultswim.com/videos/rick-and-morty">AS</a></span>
+                    <span><a href="https://www.imdb.com/title/tt2861424/">IMDb</a></span>
+                    <span><a href="doc.html">Doc</a></span>
+            </div>
+    
+            <header>
+               <!-- <h1>Rick and Morty</h1>-->
+               <img src="images/Rick-and-Morty.png" alt="Show's logo">
+            </header>
+    
+            <article id="about">
+                <p><a href="https://www.adultswim.com/videos/rick-and-morty">Rick and Morty</a> is an animated series produced by Adult Swim. Rick is a mad scientist who takes his grandchildren Morty and Summer out for adventures. The show revolves around the Smith family and their sci-fi encounters. </p>
+                <p>Look up your favorite characters from Rick and Morty show and learn something new!</p>
+            </article>
+            <div id="widgets">
+                <div id="searchBar">Search
+
+                <input id = "searchTerm" type="text" size="20" maxlength="20"/> </div>
+    
+                <div id="status">Status
+                    <select id="statusOptions">
+                        <option value="empty">All</option>
+                        <option value="alive">Alive</option>
+                        <option value="dead">Dead</option>
+                        <option value="unknown">Unknown</option>
+                    </select>
+                </div>
+    
+                <div id="gender">Gender
+                    <select id="genderOptions">
+                        <option value="empty">All</option>
+                        <option value = "female">Female</option>
+                        <option value = "male">Male</option>
+                        <option value="genderless">Genderless</option>
+                        <option value="unknown">Unknown</option>
+                    </select>
+                </div>
+                <button type="button" id="search" class="yellow">Search!</button>
+            </div>
+                    
+            <section id ="success"></section>
+
+            <main id="content">
+            </main>
+        
+            <div class="controls"></div>
+            <footer>
+                <section id="searchHistory"></section>
+                Made by Vaibhavy Darshan for IGME 235 Project 2.
+            </footer>
+        </div>       
+    </body>
+</html>
