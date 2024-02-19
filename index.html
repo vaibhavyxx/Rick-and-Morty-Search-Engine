@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Rick and Morty API</title>
+        <title>Rick and Morty</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Boogaloo&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
         <script src="script.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,27 +13,25 @@
     </head>
     <body>
         <div class ="wrapper">
-            <div class="navbar">
-                    <span><a href="#widgets">Search</a></span>
-                    <span><a href= "https://www.adultswim.com/videos/rick-and-morty">AS</a></span>
-                    <span><a href="https://www.imdb.com/title/tt2861424/">IMDb</a></span>
-                    <span><a href="doc.html">Doc</a></span>
-            </div>
-    
+            
             <header>
-               <!-- <h1>Rick and Morty</h1>-->
-               <img src="images/Rick-and-Morty.png" alt="Show's logo">
+               <img src="images/Rick-and-Morty.png" width = 20% height="auto" alt="Show's logo">
             </header>
     
             <article id="about">
-                <p><a href="https://www.adultswim.com/videos/rick-and-morty">Rick and Morty</a> is an animated series produced by Adult Swim. Rick is a mad scientist who takes his grandchildren Morty and Summer out for adventures. The show revolves around the Smith family and their sci-fi encounters. </p>
-                <p>Look up your favorite characters from Rick and Morty show and learn something new!</p>
-            </article>
-            <div id="widgets">
-                <div id="searchBar">Search
+                <img src="images/background.jpg" width="40%" height="auto">
+                <p>Rick & Morty founded by creators. It follows the premise of Rick and his grandson Morty going on intergalactic space mission.</p>
 
-                <input id = "searchTerm" type="text" size="20" maxlength="20"/> </div>
-    
+                   <p> Look up some of your fav characters as you help them solve a mystery!
+                    </p>
+            </article>
+            
+            <div id="search">
+                <div id="searchBar">Search</div>
+                <input id = "searchTerm" type="text" size="20" maxlength="32"/> 
+                <button type="button" id="search"><img src="images/icon.png" width="32px" height="auto">></button>
+            </div>
+            <div id="widgets">
                 <div id="status">Status
                     <select id="statusOptions">
                         <option value="empty">All</option>
@@ -55,7 +50,10 @@
                         <option value="unknown">Unknown</option>
                     </select>
                 </div>
-                <button type="button" id="search" class="yellow">Search!</button>
+
+                <button id="history">History</button>
+                <button id="fav">Favorites</button>
+                <button id="reset">Reset</button>
             </div>
                     
             <section id ="success"></section>
@@ -66,7 +64,7 @@
             <div class="controls"></div>
             <footer>
                 <section id="searchHistory"></section>
-                Made by Vaibhavy Darshan for IGME 235 Project 2.
+                
             </footer>
         </div>       
     </body>
