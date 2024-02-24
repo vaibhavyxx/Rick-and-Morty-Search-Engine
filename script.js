@@ -15,13 +15,14 @@
             let history = [];
             let nextButton= null;
             let prevButton = null;
+            let reset;
 
             function init(){
                 body = document.body;
                 //getAllCharacters();
                 document.querySelector("#search").onclick = getData;
                 nextButton = document.querySelector("#next");
-            
+                reset = document.getElementById("reset");
                 //calls data for the next page
                 document.body.addEventListener('click', function(event){
                 if(event.target.id == 'next'){
@@ -54,6 +55,13 @@
                 })
                });
                loadSearchHistory();
+
+               //follow a coursework
+               //resets the page
+               reset.addEventListener("click", function(e){
+
+               });
+
             }
             let xhr;
             function getData(){
