@@ -24,8 +24,6 @@ function getCheckedValues(name){
             result.push(checkedBoxes[index].value);
         }
     }
-    //const checkedBoxes = document.querySelector(`input[name="${name}]:checked`);
-    //const values = Array.from(checkedBoxes).map(checkbox => checkbox.value);
     return result;
 }
 
@@ -42,20 +40,28 @@ async function  getData(name, status, gender) {
     if(name!= undefined){
         searchedURL = `${url}/?name=${name}`;
     }
-    if(status != undefined){
+    if(status.length >0){
         searchedURL+= `&&status=${status.pop()}`;
     }
-    if(gender != undefined){
+    if(gender.length > 0){
         searchedURL += `&&gender=${gender.pop()}`;
     }
     try{
         const response = await fetch(searchedURL);
         if(!response.ok){
+            results.innerHTML = "Error 404. Try again";
             throw new Error(`Response Status: ${response.status}`);
         }
         const json = await response.json();
+        //calls a function to print it to the div
+        printData(json);
         console.log(json);
     } catch (error){
         console.log(error.message);
     }
+}
+
+//parses json to divs to print it to html
+function printData(json){
+    results.innerHTML = `Found ${json.info.count} searches`;
 }
