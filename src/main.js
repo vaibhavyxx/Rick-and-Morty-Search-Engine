@@ -55,6 +55,9 @@ async function  getData(name, status, gender) {
         const json = await response.json();
         //calls a function to print it to the div
         printData(json);
+        if(json.info.count > 20){
+           printData(json.info.next);
+        }
         console.log(json);
     } catch (error){
         console.log(error.message);
@@ -62,6 +65,13 @@ async function  getData(name, status, gender) {
 }
 
 //parses json to divs to print it to html
+//issue: currently shows upto 20 searches at once
 function printData(json){
-    results.innerHTML = `Found ${json.info.count} searches`;
+    let resultsArray = json.results; //bug is here for reading code from next pages
+    //results.innerHTML = `<p>Found ${json.info.count} searches</p>`;
+
+    for(let index=0; index< resultsArray.length; index++){
+        let currentResult = resultsArray[index];
+        results.innerHTML += `<div class="abc"><h2>${currentResult.name}</h2><img src="${currentResult.image}"><p>episodes appeared: ${currentResult.episode.length} <br>origin: ${currentResult.origin.name} <br>species: ${currentResult.species} <br>status: ${currentResult.status} </p></div>`
+    }
 }
