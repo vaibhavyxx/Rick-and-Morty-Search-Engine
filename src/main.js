@@ -18,6 +18,22 @@ const submitButton = document.querySelector('#search-button').addEventListener('
     getData(name, status, gender);
 });
 
+//checks the radio values to either true or false
+const changeRadioValues = (name, value) => {
+    let checkedBoxes = document.getElementsByName(name);
+    for(let i in checkedBoxes){
+        checkedBoxes[i].checked = false;
+    }
+}
+
+//Resets the search
+const resetButton = document.querySelector('#reset-button').addEventListener('click', ()=> {
+    apiStatus.innerHTML = "Look up your favorite characters!";
+    results.innerHTML ="";
+    changeRadioValues('status-options');
+    changeRadioValues('gender-options');
+});
+
 //gives checked values from multiple choices
 function getCheckedValues(name){
     let checkedBoxes = document.getElementsByName(name);
@@ -36,6 +52,10 @@ function capitalizeFirstLetter(word){
     return word.replace(/^./, char => char.toUpperCase());
 };
 
+const urlStatus = (json) => {
+    apiStatus.innerHTML = `Found ${json.info.count} searches`;
+}
+
 //open the request to get the results for that item
 //assuming user selects only one of the options
 async function  getData(name, status, gender) {
@@ -50,7 +70,7 @@ async function  getData(name, status, gender) {
     if(gender.length > 0){
         searchedURL += `&&gender=${gender.pop()}`;
     }
-    
+
     try{
         const response = await fetch(searchedURL);
         apiStatus.innerHTML = "Loading";
@@ -62,9 +82,11 @@ async function  getData(name, status, gender) {
         const json = await response.json();
         //calls a function to print it to the div
         results.innerHTML = "";
+        urlStatus(json);
         printData(json);
-        if(json.info.count > 20){
-           printData(json.info.next);
+        if(json.info.pages > 1){
+           //printData(json.info.next);
+           //console.log("on the next page");
         }
         
     } catch (error){
@@ -76,7 +98,6 @@ async function  getData(name, status, gender) {
 //issue: currently shows upto 20 searches at once
 function printData(json){
     let currentResults = json.results; //bug is here for reading code from next pages
-    apiStatus.innerHTML = `Found ${json.info.count} searches`;
     //results.innerHTML = "";
     for(let index=0; index< currentResults.length; index++){
         let currentResult = currentResults[index];
