@@ -2,16 +2,20 @@ const results = document.querySelector('#results');
 //make a function that trims and gives you value from the input text
 //then, call the api with that name to see if it gives what you want
 
-//As of now, assuming user only adds one name
+//calls the api to find the user entered name and filters
 const submitButton = document.querySelector('#search-button').addEventListener('click', ()=>{
     let input = document.querySelector('#search-text');
     let status = getCheckedValues("status-options");
     let gender = getCheckedValues('gender-options');
-    let name = input.value;
+    let name = input.value.trim();
+    let nameArray = name.split(' ');
 
-    //status = document.querySelector('#status')
-    let searched = input.value.trim();
-    let fixed =  capitalizeFirstLetter(searched);
+    //To start the names with uppercase if it is more than one word
+    let fixed = "";
+    for(let index in nameArray){
+        fixed += `${capitalizeFirstLetter(nameArray[index])} `;
+    }
+    name = fixed.trim();
     getData(name, status, gender);
 });
 
@@ -54,11 +58,12 @@ async function  getData(name, status, gender) {
         }
         const json = await response.json();
         //calls a function to print it to the div
+        results.innerHTML = "";
         printData(json);
         if(json.info.count > 20){
            printData(json.info.next);
         }
-        console.log(json);
+        
     } catch (error){
         console.log(error.message);
     }
@@ -68,10 +73,9 @@ async function  getData(name, status, gender) {
 //issue: currently shows upto 20 searches at once
 function printData(json){
     let resultsArray = json.results; //bug is here for reading code from next pages
-    //results.innerHTML = `<p>Found ${json.info.count} searches</p>`;
-
+    //results.innerHTML = "";
     for(let index=0; index< resultsArray.length; index++){
         let currentResult = resultsArray[index];
-        results.innerHTML += `<div class="abc"><h2>${currentResult.name}</h2><img src="${currentResult.image}"><p>episodes appeared: ${currentResult.episode.length} <br>origin: ${currentResult.origin.name} <br>species: ${currentResult.species} <br>status: ${currentResult.status} </p></div>`
+        results.innerHTML += `<div class="character-results"><h2>${currentResult.name}</h2><img src="${currentResult.image}"><p>episodes appeared: ${currentResult.episode.length} <br>origin: ${currentResult.origin.name} <br>species: ${currentResult.species} <br>status: ${currentResult.status} </p></div>`
     }
 }
