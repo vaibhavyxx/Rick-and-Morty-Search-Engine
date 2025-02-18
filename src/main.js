@@ -1,13 +1,12 @@
 const results = document.querySelector('#results');
-//make a function that trims and gives you value from the input text
-//then, call the api with that name to see if it gives what you want
+const apiStatus = document.querySelector('#api-status');
 
 //calls the api to find the user entered name and filters
 const submitButton = document.querySelector('#search-button').addEventListener('click', ()=>{
     let input = document.querySelector('#search-text');
     let status = getCheckedValues("status-options");
     let gender = getCheckedValues('gender-options');
-    let name = input.value.trim();
+    let name = input.value.trim().toLowerCase();
     let nameArray = name.split(' ');
 
     //To start the names with uppercase if it is more than one word
@@ -28,6 +27,7 @@ function getCheckedValues(name){
             result.push(checkedBoxes[index].value);
         }
     }
+   // console.log("filter result: "+ result);
     return result;
 }
 
@@ -50,9 +50,12 @@ async function  getData(name, status, gender) {
     if(gender.length > 0){
         searchedURL += `&&gender=${gender.pop()}`;
     }
+    
     try{
         const response = await fetch(searchedURL);
+        apiStatus.innerHTML = "Loading";
         if(!response.ok){
+            apiStatus.innerHTML = "Error";
             results.innerHTML = "Error 404. Try again";
             throw new Error(`Response Status: ${response.status}`);
         }
@@ -72,10 +75,11 @@ async function  getData(name, status, gender) {
 //parses json to divs to print it to html
 //issue: currently shows upto 20 searches at once
 function printData(json){
-    let resultsArray = json.results; //bug is here for reading code from next pages
+    let currentResults = json.results; //bug is here for reading code from next pages
+    apiStatus.innerHTML = `Found ${json.info.count} searches`;
     //results.innerHTML = "";
-    for(let index=0; index< resultsArray.length; index++){
-        let currentResult = resultsArray[index];
+    for(let index=0; index< currentResults.length; index++){
+        let currentResult = currentResults[index];
         results.innerHTML += `<div class="character-results"><h2>${currentResult.name}</h2><img src="${currentResult.image}"><p>episodes appeared: ${currentResult.episode.length} <br>origin: ${currentResult.origin.name} <br>species: ${currentResult.species} <br>status: ${currentResult.status} </p></div>`
     }
 }

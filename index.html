@@ -14,29 +14,30 @@
     <div id="filter">
         <div id="status">
             <h2>status</h2>
-            <input name="status-options" type="checkbox" id="alive" value="alive">
+            <input name="status-options" type="radio" id="alive" value="alive">
             <label for="alive">alive</label>
-            <input name="status-options" type="checkbox" id="dead" value="dead">
+            <input name="status-options" type="radio" id="dead" value="dead">
             <label for="dead">dead</label>
-            <input name="status-options" type="checkbox" id="unknown" value="unknown">
+            <input name="status-options" type="radio" id="unknown" value="unknown">
             <label for="unknown">unknown</label>
         </div>
     
         <div id="gender">
             <h2>gender</h2>
-            <input name="gender-options" type="checkbox" id="male" value="male">
+            <input name="gender-options" type="radio" id="male" value="male">
             <label for="male">male</label>
-            <input name="gender-options" type="checkbox" id="female" value="female">
+            <input name="gender-options" type="radio" id="female" value="female">
             <label for="female">female</label>
-            <input name="gender-options" type="checkbox" id="unknown" value="unknown">
+            <input name="gender-options" type="radio" id="unknown" value="unknown">
             <label for="unknown">unknown</label>
-            <input name="gender-options" type="checkbox" id="genderless" value="genderless">
+            <input name="gender-options" type="radio" id="genderless" value="genderless">
             <label for="genderless">genderless</label>
         </div>
     </div>
     <button id="reset-button">reset</button>
     <button id="foward">a-z</button>
     <button id="backward">z-a</button>
+    <div id="api-status">Look up your favorite characters!</div>
     <div id="results"></div>
     <script src="src/main.js"></script>
 </body>
