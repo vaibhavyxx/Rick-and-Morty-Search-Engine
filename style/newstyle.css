@@ -1,0 +1,36 @@
+html{
+    background-color: #1D2951;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+button{
+    background-color: #00FFB0;
+    color: #1D2951;
+}
+input, button {
+    padding: 5px 10px;
+    border-style: none;
+    border-radius: 5px;
+}
+#results{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-right: 10px;
+}
+.character-results img{
+    width: 200px;
+    height: auto;
+}
+.character-results {
+    border-style: solid;
+    border-color: yellowgreen;
+    box-sizing: content-box;
+    width: 200px;
+    height: max-content;
+    padding: 10px 20px;
+    margin: 5px;
+}
+.character-results h2{
+    text-wrap: wrap;
+}
