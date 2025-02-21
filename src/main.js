@@ -1,9 +1,12 @@
+import { capitalizeFirstLetter,  urlStatus} from "./util";
+
 const results = document.querySelector('#results');
 const apiStatus = document.querySelector('#api-status');
+let input;
 
 //calls the api to find the user entered name and filters
 const submitButton = document.querySelector('#search-button').addEventListener('click', ()=>{
-    let input = document.querySelector('#search-text');
+    input = document.querySelector('#search-text');
     let status = getCheckedValues("status-options");
     let gender = getCheckedValues('gender-options');
     let name = input.value.trim().toLowerCase();
@@ -30,6 +33,7 @@ const changeRadioValues = (name, value) => {
 const resetButton = document.querySelector('#reset-button').addEventListener('click', ()=> {
     apiStatus.innerHTML = "Look up your favorite characters!";
     results.innerHTML ="";
+    //input.innerHTML =" ";
     changeRadioValues('status-options');
     changeRadioValues('gender-options');
 });
@@ -45,15 +49,6 @@ function getCheckedValues(name){
     }
    // console.log("filter result: "+ result);
     return result;
-}
-
-//capitalizes first letter
-function capitalizeFirstLetter(word){
-    return word.replace(/^./, char => char.toUpperCase());
-};
-
-const urlStatus = (json) => {
-    apiStatus.innerHTML = `Found ${json.info.count} searches`;
 }
 
 //open the request to get the results for that item
@@ -85,10 +80,6 @@ async function  getData(name, status, gender) {
         results.innerHTML = "";
         urlStatus(json);
         printData(json);
-        if(json.info.pages > 1){
-           //printData(json.info.next);
-           //console.log("on the next page");
-        }
         
     } catch (error){
         console.log(error.message);
@@ -99,7 +90,6 @@ async function  getData(name, status, gender) {
 //issue: currently shows upto 20 searches at once
 function printData(json){
     let currentResults = json.results; //bug is here for reading code from next pages
-    //results.innerHTML = "";
     for(let index=0; index< currentResults.length; index++){
         let currentResult = currentResults[index];
         results.innerHTML += `<div class="character-results"><h2>${currentResult.name}</h2><img src="${currentResult.image}"><p>episodes appeared: ${currentResult.episode.length} <br>origin: ${currentResult.origin.name} <br>species: ${currentResult.species} <br>status: ${currentResult.status} </p></div>`
