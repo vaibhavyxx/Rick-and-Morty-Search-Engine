@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter,  urlStatus} from "./util";
+import { capitalizeFirstLetter,  urlStatus} from "./util.js";
 console.log("main.js loaded!");
 
 const results = document.querySelector('#results');
