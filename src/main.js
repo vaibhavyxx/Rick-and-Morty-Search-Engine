@@ -1,4 +1,5 @@
 import { capitalizeFirstLetter,  urlStatus} from "./util";
+console.log("main.js loaded!");
 
 const results = document.querySelector('#results');
 const apiStatus = document.querySelector('#api-status');
@@ -54,6 +55,7 @@ function getCheckedValues(name){
 //assuming user selects only one of the options
 async function  getData(name, status, gender) {
     let searchedURL;
+    apiStatus.innerHTML = "Loading";
     const url="https://rickandmortyapi.com/api/character";
     if(name!= undefined){
         searchedURL = `${url}/?name=${name}`;
@@ -66,20 +68,18 @@ async function  getData(name, status, gender) {
     }
 
     try{
-        const response =  fetch(searchedURL);
-        apiStatus.innerHTML = "Loading";
-        url.then(response => { return response.json();})
-        url.then(data => {
-            console.log('Data recieved:', data);
+        fetch(searchedURL)
+            .then(response => { return response.json();})
+            .then(data => {
+                console.log('Data recieved:', data);
+                results.innerHTML = "";
+                urlStatus(json);
+                printData(json);
         })
         .catch(error => {
             console.log('Error 404');
         });
         
-        //calls a function to print it to the div
-        results.innerHTML = "";
-        urlStatus(json);
-        printData(json);
         
     } catch (error){
         console.log(error.message);
