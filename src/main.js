@@ -47,7 +47,6 @@ function getCheckedValues(name){
             result.push(checkedBoxes[index].value);
         }
     }
-   // console.log("filter result: "+ result);
     return result;
 }
 
