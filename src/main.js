@@ -66,15 +66,16 @@ async function  getData(name, status, gender) {
     }
 
     try{
-        const response = await fetch(searchedURL);
+        const response =  fetch(searchedURL);
         apiStatus.innerHTML = "Loading";
-        if(!response.ok){
-            apiStatus.innerHTML = "Error";
-            results.innerHTML = "Error 404. Try again";
-            throw new Error(`Response Status: ${response.status}`);
-        }
+        url.then(response => { return response.json();})
+        url.then(data => {
+            console.log('Data recieved:', data);
+        })
+        .catch(error => {
+            console.log('Error 404');
+        });
         
-        const json = await response.json();
         //calls a function to print it to the div
         results.innerHTML = "";
         urlStatus(json);
