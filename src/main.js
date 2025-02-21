@@ -79,6 +79,7 @@ async function  getData(name, status, gender) {
             results.innerHTML = "Error 404. Try again";
             throw new Error(`Response Status: ${response.status}`);
         }
+        
         const json = await response.json();
         //calls a function to print it to the div
         results.innerHTML = "";
