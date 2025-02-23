@@ -30,6 +30,7 @@ input, button {
     height: max-content;
     padding: 10px 20px;
     margin: 5px;
+    align-items: stretch;
 }
 .character-results h2{
     text-wrap: wrap;

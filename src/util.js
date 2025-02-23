@@ -10,7 +10,7 @@ const urlStatus = (json) => {
 //checks the radio values to either true or false
 const changeRadioValues = (name, value) => {
     let checkedBoxes = document.getElementsByName(name);
-    for(let i in checkedBoxes){
+    for(let i =0; i < checkedBoxes.length; i++){
         checkedBoxes[i].checked = false;
     }
 }
