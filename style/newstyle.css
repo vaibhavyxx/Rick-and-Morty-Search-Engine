@@ -2,6 +2,7 @@ html{
     background-color: #1D2951;
     color: white;
     font-family: 'Inter', sans-serif;
+    margin-left: 50px;
 }
 button{
     background-color: #00FFB0;

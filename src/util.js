@@ -4,7 +4,7 @@ function capitalizeFirstLetter(word){
 };
 
 const urlStatus = (json) => {
-    document.querySelector('#api-status').innerHTML = `Found ${json.info.count} searches`;
+    document.querySelector('#api-status').innerHTML = `found ${json.info.count} searches`;
 }
 
 //checks the radio values to either true or false
