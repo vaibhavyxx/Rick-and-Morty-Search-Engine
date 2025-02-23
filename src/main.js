@@ -1,5 +1,4 @@
-import { capitalizeFirstLetter,  urlStatus} from "./util.js";
-console.log("main.js loaded!");
+import { capitalizeFirstLetter, urlStatus, changeRadioValues, getCheckedValues} from "./util.js";
 
 const results = document.querySelector('#results');
 const apiStatus = document.querySelector('#api-status');
@@ -22,14 +21,6 @@ const submitButton = document.querySelector('#search-button').addEventListener('
     getData(name, status, gender);
 });
 
-//checks the radio values to either true or false
-const changeRadioValues = (name, value) => {
-    let checkedBoxes = document.getElementsByName(name);
-    for(let i in checkedBoxes){
-        checkedBoxes[i].checked = false;
-    }
-}
-
 //Resets the search
 const resetButton = document.querySelector('#reset-button').addEventListener('click', ()=> {
     apiStatus.innerHTML = "Look up your favorite characters!";
@@ -39,17 +30,6 @@ const resetButton = document.querySelector('#reset-button').addEventListener('cl
     changeRadioValues('gender-options');
 });
 
-//gives checked values from multiple choices
-function getCheckedValues(name){
-    let checkedBoxes = document.getElementsByName(name);
-    let result= [];
-    for(let index =0; index < checkedBoxes.length; index++){
-        if(checkedBoxes[index].checked){
-            result.push(checkedBoxes[index].value);
-        }
-    }
-    return result;
-}
 
 //open the request to get the results for that item
 //assuming user selects only one of the options
@@ -68,13 +48,14 @@ async function  getData(name, status, gender) {
     }
 
     try{
+        console.log(searchedURL);
         fetch(searchedURL)
             .then(response => { return response.json();})
             .then(data => {
                 console.log('Data recieved:', data);
                 results.innerHTML = "";
-                urlStatus(json);
-                printData(json);
+                urlStatus(data);
+                printData(data);
         })
         .catch(error => {
             console.log('Error 404');
